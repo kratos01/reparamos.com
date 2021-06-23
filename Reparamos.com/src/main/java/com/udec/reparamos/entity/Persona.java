@@ -1,4 +1,5 @@
-package com.udec.entity;
+package com.udec.reparamos.entity;
+
 
 public class Persona {
 	

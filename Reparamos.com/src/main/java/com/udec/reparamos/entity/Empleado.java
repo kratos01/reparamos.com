@@ -1,7 +1,15 @@
-package com.udec.entity;
+package com.udec.reparamos.entity;
 
-public class Empleado extends Persona{
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
+public class Empleado {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String rol;
 	
