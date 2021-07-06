@@ -1,11 +1,23 @@
 package com.udec.reparamos.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "reparacion")
 public class Reparacion {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 	private String tipoArreglo;
-	private String valor;
-	private String duracion;
+	private Double valor;
+	private String garantia;
 	private String observaciones;
+	private String duracion;
 	
 	public String getTipoArreglo() {
 		return tipoArreglo;
@@ -13,23 +25,35 @@ public class Reparacion {
 	public void setTipoArreglo(String tipoArreglo) {
 		this.tipoArreglo = tipoArreglo;
 	}
-	public String getValor() {
+	public Double getValor() {
 		return valor;
 	}
-	public void setValor(String valor) {
+	public void setValor(Double valor) {
 		this.valor = valor;
 	}
 	public String getDuracion() {
-		return duracion;
+		return garantia;
 	}
 	public void setDuracion(String duracion) {
-		this.duracion = duracion;
+		this.garantia = duracion;
 	}
 	public String getObservaciones() {
 		return observaciones;
 	}
 	public void setObservaciones(String observaciones) {
 		this.observaciones = observaciones;
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getGarantia() {
+		return garantia;
+	}
+	public void setGarantia(String garantia) {
+		this.garantia = garantia;
 	}
 	
 	

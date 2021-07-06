@@ -1,11 +1,15 @@
 package com.udec.reparamos.services;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.udec.reparamos.entity.Cliente;
+import com.udec.reparamos.entity.Reparacion;
+import com.udec.reparamos.repo.IReparamosReparacion;
 import com.udec.reparamos.repo.IReparamosRepo;
 import com.udec.reparamos.servicesImp.IServicioReparamos;
 
@@ -16,6 +20,14 @@ public class ServiciosReparacion implements IServicioReparamos{
 
 	@Autowired
 	IReparamosRepo repo;
+	@Autowired
+	IReparamosReparacion repoR;
+	
+	@Override
+	public List<Cliente> consultarCliente() {
+		List<Cliente> cliente = repo.findAll();
+		return cliente;
+	}
 	
 	@Override
 	public void registroCliente(Cliente cliente) {
@@ -24,16 +36,15 @@ public class ServiciosReparacion implements IServicioReparamos{
 
 	@Override
 	public Cliente editarCliente(Cliente cliente) {
-		// TODO Auto-generated method stub
 		if (cliente.getId() == null) {
-			throw new RuntimeException("Id Autor es requerido");
+			throw new RuntimeException("Id cliente es requerido");
 		}
-		Cliente cli = repo.findById(cliente.getId()).orElseThrow(() -> new RuntimeException("Autor no encontrado"));
+		Cliente cli = repo.findById(cliente.getId()).orElseThrow(() -> new RuntimeException("cliente no encontrado"));
 		
 		BigInteger contador = (BigInteger) repo.validarExistenciaCedulaEditar(cliente.getId(), cliente.getCedula());
 
 		if (contador.intValue() > 0)
-			throw new RuntimeException("Ya existe un Autor con esta cédula");
+			throw new RuntimeException("Ya existe un cliente con esta cédula");
 		
 		cli.setApellido(cliente.getApellido());
 		cli.setNombre(cliente.getNombre());
@@ -48,9 +59,16 @@ public class ServiciosReparacion implements IServicioReparamos{
 	
 	@Override
 	public void eliminarCliente(Integer id) {
-		Cliente cli = repo.findById(id).orElseThrow(() -> new RuntimeException("Autor no encontrado"));
+		Cliente cli = repo.findById(id).orElseThrow(() -> new RuntimeException("cliente no encontrado"));
 		repo.delete(cli);
 	}
+
+	@Override
+	public void registroReparacion(Reparacion reparacion) {
+		repoR.save(reparacion);		
+	}
+
+	
 
 	
 }
