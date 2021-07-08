@@ -37,7 +37,7 @@ public class ReparamosController {
 	@PostMapping(path = "/guardar")
 	public ResponseEntity<Cliente> guardarUsuario(@RequestBody Cliente cliente) {
 		 service.registroCliente(cliente);
-		return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
+		return new ResponseEntity<Cliente>(cliente, HttpStatus.CREATED);
 	}
 	
 	@PutMapping(path = "/editar")
@@ -53,9 +53,16 @@ public class ReparamosController {
 	}
 	
 	//Servicios Insercion de reparaciones
+	@GetMapping(path = "/informe")
+	public ResponseEntity<List<Object>> informeReparacion() {
+		 List<Object> reparacion =  service.informeReparacion();
+		return new ResponseEntity<List<Object>>(reparacion, HttpStatus.OK);
+	}
+	
 	@PostMapping(path = "/guardarReparacion")
 	public ResponseEntity<Reparacion> guardarReparacion(@RequestBody Reparacion reparacion) {
 		 service.registroReparacion(reparacion);
-		return new ResponseEntity<Reparacion>(reparacion, HttpStatus.OK);
+		return new ResponseEntity<Reparacion>(reparacion, HttpStatus.CREATED);
 	}
+	
 }

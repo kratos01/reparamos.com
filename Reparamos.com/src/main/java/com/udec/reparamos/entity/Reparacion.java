@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,8 +19,17 @@ public class Reparacion {
 	private Double valor;
 	private String garantia;
 	private String observaciones;
-	private String duracion;
 	
+	@ManyToOne
+	@JoinColumn(name = "id_cliente", nullable = false)
+	private Cliente cliente;
+	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public String getTipoArreglo() {
 		return tipoArreglo;
 	}
@@ -31,11 +42,11 @@ public class Reparacion {
 	public void setValor(Double valor) {
 		this.valor = valor;
 	}
-	public String getDuracion() {
+	public String getGarantia() {
 		return garantia;
 	}
-	public void setDuracion(String duracion) {
-		this.garantia = duracion;
+	public void setGarantia(String garantia) {
+		this.garantia = garantia;
 	}
 	public String getObservaciones() {
 		return observaciones;
@@ -43,17 +54,12 @@ public class Reparacion {
 	public void setObservaciones(String observaciones) {
 		this.observaciones = observaciones;
 	}
-	public Integer getId() {
-		return id;
+	public Cliente getCliente() {
+		 cliente.getId();
+		 return cliente;
 	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public String getGarantia() {
-		return garantia;
-	}
-	public void setGarantia(String garantia) {
-		this.garantia = garantia;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 	
 	

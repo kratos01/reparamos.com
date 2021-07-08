@@ -68,6 +68,12 @@ public class ServiciosReparacion implements IServicioReparamos{
 		repoR.save(reparacion);		
 	}
 
+	@Override
+	public List<Object> informeReparacion() {
+		List<Object> info = repoR.findbyinforme();
+		return info; 
+	}
+
 	
 
 	

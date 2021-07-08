@@ -35,6 +35,7 @@ public class Cliente {
 	
 	@Column(name = "direccion", nullable = false, length = 5)
 	private String direccion;
+	
 	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name = "fecha_nacimiento", nullable = false, length = 5)
 	private String fechaNacimiento;
