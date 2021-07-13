@@ -1,7 +1,6 @@
 package com.udec.reparamos.services;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,7 +73,20 @@ public class ServiciosReparacion implements IServicioReparamos{
 		return info; 
 	}
 
-	
-
+	@Override
+	public Reparacion editarReparacion(Reparacion reparacion) {
+		if (reparacion.getCliente().getId() == null) {
+			throw new RuntimeException("Id reparacion es requerido");
+		}
+	  Reparacion repara = repoR.findById(reparacion.getId()).orElseThrow(() -> new RuntimeException("reparacion no encontrada"));
+		
+	  repara.setTipoArreglo(reparacion.getTipoArreglo());
+	  repara.setValor(reparacion.getValor());
+	  repara.setGarantia(reparacion.getGarantia());
+	  repara.setObservaciones(reparacion.getObservaciones());
+	 
+	  repoR.save(repara);
+	  return repara;
+	}
 	
 }

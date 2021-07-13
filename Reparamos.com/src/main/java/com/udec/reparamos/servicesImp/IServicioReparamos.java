@@ -18,4 +18,5 @@ public interface IServicioReparamos {
 	public void eliminarCliente(Integer id);
 	public void registroReparacion(Reparacion reparacion);
 	public List<Object> informeReparacion();
+	public Reparacion editarReparacion(Reparacion reparacion);
 }

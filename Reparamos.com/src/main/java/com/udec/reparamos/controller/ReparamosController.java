@@ -52,7 +52,7 @@ public class ReparamosController {
 		return new ResponseEntity<Object>(HttpStatus.NO_CONTENT);
 	}
 	
-	//Servicios Insercion de reparaciones
+	//Servicios de reparaciones
 	@GetMapping(path = "/informe")
 	public ResponseEntity<List<Object>> informeReparacion() {
 		 List<Object> reparacion =  service.informeReparacion();
@@ -65,4 +65,9 @@ public class ReparamosController {
 		return new ResponseEntity<Reparacion>(reparacion, HttpStatus.CREATED);
 	}
 	
+	@PutMapping(path = "/editarInfo")
+	public ResponseEntity<Reparacion> editarUsuario(@RequestBody Reparacion reparacion) {
+		 service.editarReparacion(reparacion);
+		return new ResponseEntity<Reparacion>(reparacion, HttpStatus.OK);
+	}
 }
